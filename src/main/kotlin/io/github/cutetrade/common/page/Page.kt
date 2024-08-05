@@ -14,18 +14,31 @@
  *    limitations under the License.
  */
 
-package io.github.cutetrade.common.extension
+package io.github.cutetrade.common.page
 
 import io.github.cutetrade.common.CommonFunctions
-import io.github.cutetrade.common.log.LogType
 import io.github.cutetrade.common.pool.CommonFunctionsPool
+import io.github.cutetrade.common.proxy.ItemStackProxy
 
-fun String.logInfo() {
-    val proxy = CommonFunctionsPool.getProxy<CommonFunctions.LoggerFunctions>(CommonFunctions.LoggerFunctions::class.java)
-    proxy.log(LogType.INFO, this)
-}
+class Page(
+    private val rows: Int
+) {
+    val slots: ArrayList<ItemStackProxy> = ArrayList(rows * 9)
 
-fun String.logError(throwable: Throwable) {
-    val proxy = CommonFunctionsPool.getProxy<CommonFunctions.LoggerFunctions>(CommonFunctions.LoggerFunctions::class.java)
-    proxy.log(LogType.ERROR, this)
+    fun initialize() {
+        for (row in 0 until rows) {
+            for (column in 0 until 9) {
+                slots.add(ItemStackProxy.EMPTY!!)
+            }
+        }
+    }
+
+    fun show(inventory: Any) {
+        val functions =
+            CommonFunctionsPool.getProxy<CommonFunctions.InventoryFunctions>(CommonFunctions.InventoryFunctions::class.java)
+        slots.forEachIndexed { index, itemStack ->
+            functions.setStack(inventory, index, itemStack)
+        }
+    }
+
 }

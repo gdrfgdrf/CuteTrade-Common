@@ -1,10 +1,9 @@
 package io.github.cutetrade.common.translation
 
-import io.github.cutetrade.common.ClickTextAction
-import io.github.cutetrade.common.HoverTextAction
-import io.github.cutetrade.common.CommonProxySet
-import io.github.cutetrade.common.pool.CommonProxyPool
+import io.github.cutetrade.common.CommonFunctions
+import io.github.cutetrade.common.pool.CommonFunctionsPool
 import io.github.cutetrade.common.proxy.ItemStackProxy
+import io.github.cutetrade.common.proxy.TextProxy
 
 class TranslationTextAgent private constructor(
     val raw: String,
@@ -76,8 +75,8 @@ class TranslationTextAgent private constructor(
             return this
         }
         val proxy =
-            CommonProxyPool.getProxy<CommonProxySet.TranslationTextCreateHoverActionValueFunction>(
-                CommonProxySet.TranslationTextCreateHoverActionValueFunction::class.java
+            CommonFunctionsPool.getProxy<CommonFunctions.TranslationTextFunctions>(
+                CommonFunctions.TranslationTextFunctions::class.java
             )
         val value = when (this.hoverAction) {
             HoverTextAction.SHOW_TEXT -> proxy.createShowText(any as String)
@@ -112,9 +111,9 @@ class TranslationTextAgent private constructor(
         return this
     }
 
-    fun build(): Any {
-        val buildFunction = CommonProxyPool.getProxy<CommonProxySet.TranslationTextBuildFunction>(
-            CommonProxySet.TranslationTextBuildFunction::class.java
+    fun build(): TextProxy {
+        val buildFunction = CommonFunctionsPool.getProxy<CommonFunctions.TranslationTextFunctions>(
+            CommonFunctions.TranslationTextFunctions::class.java
         )
         return buildFunction.build(this)
     }

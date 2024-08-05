@@ -1,14 +1,18 @@
 package io.github.cutetrade.common.trade.screen.handler
 
-import io.github.cutetrade.common.CommonProxySet
-import io.github.cutetrade.common.pool.CommonProxyPool
+import io.github.cutetrade.common.CommonFunctions
+import io.github.cutetrade.common.pool.CommonFunctionsPool
 import io.github.cutetrade.common.proxy.ItemStackProxy
 import io.github.cutetrade.common.proxy.SlotProxy
 
 class ScreenHandlerAgent(
     val raw: Any
 ) {
-    private val functions = CommonProxyPool.getProxy<CommonProxySet.ScreenHandlerFunctions>(CommonProxySet.ScreenHandlerFunctions::class.java)
+    private val functions = CommonFunctionsPool.getProxy<CommonFunctions.ScreenHandlerFunctions>(CommonFunctions.ScreenHandlerFunctions::class.java)
+
+    fun getInventory(): Any {
+        return functions.getInventory(this)
+    }
 
     fun setStackInSlot(slot: Int, revision: Int, stack: ItemStackProxy) {
         functions.setStackInSlot(this, slot, revision, stack)

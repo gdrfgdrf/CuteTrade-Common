@@ -16,8 +16,8 @@
 
 package io.github.cutetrade.common.trade.screen
 
-import io.github.cutetrade.common.CommonProxySet
-import io.github.cutetrade.common.pool.CommonProxyPool
+import io.github.cutetrade.common.CommonFunctions
+import io.github.cutetrade.common.pool.CommonFunctionsPool
 import io.github.cutetrade.common.proxy.PlayerProxy
 import io.github.cutetrade.common.trade.screen.handler.ScreenHandlerAgent
 
@@ -31,8 +31,8 @@ class TradeScreenPresenter private constructor(
 
     fun openTradeScreen() {
         val factory =
-            CommonProxyPool.getProxy<CommonProxySet.TradeScreenHandlerFactoryGetter>(
-                CommonProxySet.TradeScreenHandlerFactoryGetter::class.java
+            CommonFunctionsPool.getProxy<CommonFunctions.TradeScreenHandlerFactoryGetter>(
+                CommonFunctions.TradeScreenHandlerFactoryGetter::class.java
             ).create(tradeScreenContext.context.tradeId)
         redPlayer.openHandledScreen(factory)
         bluePlayer.openHandledScreen(factory)

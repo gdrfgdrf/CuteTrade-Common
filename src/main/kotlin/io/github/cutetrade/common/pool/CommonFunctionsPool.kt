@@ -2,7 +2,7 @@ package io.github.cutetrade.common.pool
 
 import java.util.concurrent.ConcurrentHashMap
 
-object CommonProxyPool {
+object CommonFunctionsPool {
     private val PROXY_POOL = ConcurrentHashMap<Class<*>, Any>()
 
     @Suppress("UNCHECKED_CAST")

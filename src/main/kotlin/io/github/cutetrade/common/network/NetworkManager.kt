@@ -1,15 +1,15 @@
 package io.github.cutetrade.common.network
 
-import io.github.cutetrade.common.CommonProxySet
-import io.github.cutetrade.common.pool.CommonProxyPool
+import io.github.cutetrade.common.CommonFunctions
+import io.github.cutetrade.common.pool.CommonFunctionsPool
 import io.github.cutetrade.common.proxy.PacketByteBufProxy
 import io.github.cutetrade.common.proxy.PlayerProxy
 
 object NetworkManager {
     private val MAIN_FUNCTIONS =
-        CommonProxyPool.getProxy<CommonProxySet.MainFunctions>(CommonProxySet.MainFunctions::class.java)
+        CommonFunctionsPool.getProxy<CommonFunctions.MainFunctions>(CommonFunctions.MainFunctions::class.java)
     private val NETWORK_FUNCTIONS =
-        CommonProxyPool.getProxy<CommonProxySet.NetworkFunctions>(CommonProxySet.NetworkFunctions::class.java)
+        CommonFunctionsPool.getProxy<CommonFunctions.NetworkFunctions>(CommonFunctions.NetworkFunctions::class.java)
 
     val S2C_OPERATION: Any = MAIN_FUNCTIONS.createIdentifier("cutetrade_networking", "s2c_operation")
     val C2S_OPERATION: Any = MAIN_FUNCTIONS.createIdentifier("cutetrade_networking", "c2s_operation")

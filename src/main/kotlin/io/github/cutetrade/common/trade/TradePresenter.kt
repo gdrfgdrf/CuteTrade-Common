@@ -16,13 +16,13 @@
 
 package io.github.cutetrade.common.trade
 
-import io.github.cutetrade.common.CommonProxySet
+import io.github.cutetrade.common.CommonFunctions
 import io.github.cutetrade.common.enums.TraderState
 import io.github.cutetrade.common.extension.translationScope
 import io.github.cutetrade.common.network.NetworkManager
 import io.github.cutetrade.common.network.S2COperationPacket
 import io.github.cutetrade.common.operation.server.Operators
-import io.github.cutetrade.common.pool.CommonProxyPool
+import io.github.cutetrade.common.pool.CommonFunctionsPool
 import io.github.cutetrade.common.proxy.ItemStackProxy
 import io.github.cutetrade.common.translation.TranslationAgent
 
@@ -307,8 +307,8 @@ class TradePresenter private constructor(
         }
     }
 
-    private fun getSoundGetter(): CommonProxySet.SoundGetter {
-        return CommonProxyPool.getProxy(CommonProxySet.SoundGetter::class.java)
+    private fun getSoundGetter(): CommonFunctions.SoundGetter {
+        return CommonFunctionsPool.getProxy(CommonFunctions.SoundGetter::class.java)
     }
 
     companion object {

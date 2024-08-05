@@ -1,15 +1,21 @@
 package io.github.cutetrade.common
 
 import io.github.cutetrade.common.log.LogType
-import io.github.cutetrade.common.proxy.ItemStackProxy
-import io.github.cutetrade.common.proxy.PacketByteBufProxy
-import io.github.cutetrade.common.proxy.PlayerProxy
-import io.github.cutetrade.common.proxy.SlotProxy
+import io.github.cutetrade.common.proxy.*
 import io.github.cutetrade.common.trade.screen.handler.ScreenHandlerAgent
 import io.github.cutetrade.common.translation.TranslationAgent
 import io.github.cutetrade.common.translation.TranslationTextAgent
 
-object CommonProxySet {
+object CommonFunctions {
+    interface ProxyFactory {
+        fun createItemStackProxyFromNbt(nbt: Nbt): ItemStackProxy
+
+        fun newNbt(): Nbt
+        fun parseNbt(string: String): Nbt
+
+        fun createTextProxy(string: String): TextProxy
+    }
+
     interface MainFunctions {
         fun createIdentifier(namespace: String, path: String): Any
     }
@@ -23,19 +29,27 @@ object CommonProxySet {
         fun log(logType: LogType, message: String)
     }
 
-    interface TranslationTextCreateHoverActionValueFunction {
+    interface ItemStackFunctions {
+        fun create(itemProxy: ItemProxy): ItemStackProxy
+        fun getEmptyItemStack(): ItemStackProxy
+    }
+
+    interface ItemFunctions {
+        fun get(fieldName: String): ItemProxy
+    }
+
+    interface TranslationTextFunctions {
         fun createShowText(value: String): Any
         fun createShowItem(itemStack: ItemStackProxy): Any
         fun createShowEntity(entity: Any): Any
-    }
-
-    interface TranslationTextBuildFunction {
-        fun build(translationTextAgent: TranslationTextAgent): Any
+        fun build(translationTextAgent: TranslationTextAgent): TextProxy
     }
 
     interface TranslationFunctions {
+        fun get(translationAgent: TranslationAgent, index: Int): TranslationTextAgent
         fun append(translationAgent: TranslationAgent, translationTextAgent: TranslationTextAgent): TranslationAgent
         fun format(translationAgent: TranslationAgent, index: Int, vararg any: Any): TranslationAgent
+        fun build(translationAgent: TranslationAgent): TextProxy
     }
 
     interface SoundGetter {
@@ -52,7 +66,14 @@ object CommonProxySet {
         fun create(title: String): Any
     }
 
+    interface PageableScreenHandlerFactoryGetter {
+        fun create(title: TextProxy): Any
+    }
+
     interface ScreenHandlerFunctions {
+        fun getInventory(
+            screenHandlerAgent: ScreenHandlerAgent
+        ): Any
         fun setStackInSlot(
             screenHandlerAgent: ScreenHandlerAgent,
             slot: Int,
@@ -68,5 +89,13 @@ object CommonProxySet {
             listener: (ScreenHandlerAgent, Int, ItemStackProxy) -> Unit,
         )
         fun nextRevision(screenHandlerAgent: ScreenHandlerAgent): Int
+    }
+
+    interface PageableScreenHandlerFunctions {
+        fun setOnItemClick(onItemClick: (Int) -> Unit)
+    }
+
+    interface InventoryFunctions {
+        fun setStack(inventory: Any, index: Int, stack: ItemStackProxy)
     }
 }

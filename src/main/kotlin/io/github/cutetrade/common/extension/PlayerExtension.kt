@@ -25,6 +25,10 @@ import io.github.cutetrade.common.manager.TradeRequestManager
 import io.github.cutetrade.common.pool.PlayerProxyPool
 import io.github.cutetrade.common.trade.TradeRequest
 
+fun String.findProtobufPlayer(): Player? {
+    return ProtobufPlayerManager.findPlayer(this)
+}
+
 fun Player.isOnline(): Boolean {
     return PlayerProxyPool.contains(this.name)
 }

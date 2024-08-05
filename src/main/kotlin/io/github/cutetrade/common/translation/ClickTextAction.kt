@@ -1,4 +1,4 @@
-package io.github.cutetrade.common
+package io.github.cutetrade.common.translation
 
 enum class ClickTextAction {
     OPEN_URL,
