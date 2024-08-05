@@ -308,7 +308,7 @@ class TradePresenter private constructor(
     }
 
     private fun getSoundGetter(): CommonFunctions.SoundGetter {
-        return CommonFunctionsPool.getProxy(CommonFunctions.SoundGetter::class.java)
+        return CommonFunctionsPool.getFunctions(CommonFunctions.SoundGetter::class.java)
     }
 
     companion object {

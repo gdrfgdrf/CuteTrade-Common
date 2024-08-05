@@ -42,7 +42,7 @@ class TranslationAgent(
         var functions: CommonFunctions.TranslationFunctions? = null
             get() {
                 if (field == null) {
-                    field = CommonFunctionsPool.getProxy<CommonFunctions.TranslationFunctions>(CommonFunctions.TranslationFunctions::class.java)
+                    field = CommonFunctionsPool.getFunctions<CommonFunctions.TranslationFunctions>(CommonFunctions.TranslationFunctions::class.java)
                 }
                 return field
             }

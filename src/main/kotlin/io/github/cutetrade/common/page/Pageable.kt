@@ -36,7 +36,7 @@ class Pageable {
 
     fun openScreen(displayName: TextProxy, serverPlayerEntity: PlayerProxy) {
         val factoryGetter =
-            CommonFunctionsPool.getProxy<CommonFunctions.PageableScreenHandlerFactoryGetter>(
+            CommonFunctionsPool.getFunctions<CommonFunctions.PageableScreenHandlerFactoryGetter>(
                 CommonFunctions.PageableScreenHandlerFactoryGetter::class.java
             )
 
@@ -70,7 +70,7 @@ class Pageable {
 
     fun setOnItemClick(onItemClick: (Int) -> Unit) {
         val functions =
-            CommonFunctionsPool.getProxy<CommonFunctions.PageableScreenHandlerFunctions>(CommonFunctions.PageableScreenHandlerFunctions::class.java)
+            CommonFunctionsPool.getFunctions<CommonFunctions.PageableScreenHandlerFunctions>(CommonFunctions.PageableScreenHandlerFunctions::class.java)
         functions.setOnItemClick(onItemClick)
     }
 
@@ -99,9 +99,9 @@ class Pageable {
     private fun addNavigationBar(page: Page, left: Boolean, right: Boolean, serverPlayerEntity: PlayerProxy) {
         serverPlayerEntity.translationScope {
             val itemFunctions =
-                CommonFunctionsPool.getProxy<CommonFunctions.ItemFunctions>(CommonFunctions.ItemFunctions::class.java)
+                CommonFunctionsPool.getFunctions<CommonFunctions.ItemFunctions>(CommonFunctions.ItemFunctions::class.java)
             val itemStackFunctions =
-                CommonFunctionsPool.getProxy<CommonFunctions.ItemStackFunctions>(CommonFunctions.ItemStackFunctions::class.java)
+                CommonFunctionsPool.getFunctions<CommonFunctions.ItemStackFunctions>(CommonFunctions.ItemStackFunctions::class.java)
 
             val previous = itemStackFunctions.create(itemFunctions.get("LIME_WOOL"))
             previous.setCustomName(toScreenText("previous_page").build())

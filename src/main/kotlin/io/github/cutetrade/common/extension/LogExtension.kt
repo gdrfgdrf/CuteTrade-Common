@@ -21,11 +21,11 @@ import io.github.cutetrade.common.log.LogType
 import io.github.cutetrade.common.pool.CommonFunctionsPool
 
 fun String.logInfo() {
-    val proxy = CommonFunctionsPool.getProxy<CommonFunctions.LoggerFunctions>(CommonFunctions.LoggerFunctions::class.java)
+    val proxy = CommonFunctionsPool.getFunctions<CommonFunctions.LoggerFunctions>(CommonFunctions.LoggerFunctions::class.java)
     proxy.log(LogType.INFO, this)
 }
 
 fun String.logError(throwable: Throwable) {
-    val proxy = CommonFunctionsPool.getProxy<CommonFunctions.LoggerFunctions>(CommonFunctions.LoggerFunctions::class.java)
+    val proxy = CommonFunctionsPool.getFunctions<CommonFunctions.LoggerFunctions>(CommonFunctions.LoggerFunctions::class.java)
     proxy.log(LogType.ERROR, this)
 }

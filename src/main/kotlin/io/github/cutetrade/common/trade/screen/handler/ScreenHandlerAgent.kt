@@ -8,7 +8,7 @@ import io.github.cutetrade.common.proxy.SlotProxy
 class ScreenHandlerAgent(
     val raw: Any
 ) {
-    private val functions = CommonFunctionsPool.getProxy<CommonFunctions.ScreenHandlerFunctions>(CommonFunctions.ScreenHandlerFunctions::class.java)
+    private val functions = CommonFunctionsPool.getFunctions<CommonFunctions.ScreenHandlerFunctions>(CommonFunctions.ScreenHandlerFunctions::class.java)
 
     fun getInventory(): Any {
         return functions.getInventory(this)

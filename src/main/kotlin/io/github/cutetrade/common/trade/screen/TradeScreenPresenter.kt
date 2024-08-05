@@ -31,7 +31,7 @@ class TradeScreenPresenter private constructor(
 
     fun openTradeScreen() {
         val factory =
-            CommonFunctionsPool.getProxy<CommonFunctions.TradeScreenHandlerFactoryGetter>(
+            CommonFunctionsPool.getFunctions<CommonFunctions.TradeScreenHandlerFactoryGetter>(
                 CommonFunctions.TradeScreenHandlerFactoryGetter::class.java
             ).create(tradeScreenContext.context.tradeId)
         redPlayer.openHandledScreen(factory)

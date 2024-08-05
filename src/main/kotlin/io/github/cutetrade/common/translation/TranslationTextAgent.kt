@@ -75,7 +75,7 @@ class TranslationTextAgent private constructor(
             return this
         }
         val proxy =
-            CommonFunctionsPool.getProxy<CommonFunctions.TranslationTextFunctions>(
+            CommonFunctionsPool.getFunctions<CommonFunctions.TranslationTextFunctions>(
                 CommonFunctions.TranslationTextFunctions::class.java
             )
         val value = when (this.hoverAction) {
@@ -112,7 +112,7 @@ class TranslationTextAgent private constructor(
     }
 
     fun build(): TextProxy {
-        val buildFunction = CommonFunctionsPool.getProxy<CommonFunctions.TranslationTextFunctions>(
+        val buildFunction = CommonFunctionsPool.getFunctions<CommonFunctions.TranslationTextFunctions>(
             CommonFunctions.TranslationTextFunctions::class.java
         )
         return buildFunction.build(this)

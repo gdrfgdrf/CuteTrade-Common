@@ -7,9 +7,9 @@ import io.github.cutetrade.common.proxy.PlayerProxy
 
 object NetworkManager {
     private val MAIN_FUNCTIONS =
-        CommonFunctionsPool.getProxy<CommonFunctions.MainFunctions>(CommonFunctions.MainFunctions::class.java)
+        CommonFunctionsPool.getFunctions<CommonFunctions.MainFunctions>(CommonFunctions.MainFunctions::class.java)
     private val NETWORK_FUNCTIONS =
-        CommonFunctionsPool.getProxy<CommonFunctions.NetworkFunctions>(CommonFunctions.NetworkFunctions::class.java)
+        CommonFunctionsPool.getFunctions<CommonFunctions.NetworkFunctions>(CommonFunctions.NetworkFunctions::class.java)
 
     val S2C_OPERATION: Any = MAIN_FUNCTIONS.createIdentifier("cutetrade_networking", "s2c_operation")
     val C2S_OPERATION: Any = MAIN_FUNCTIONS.createIdentifier("cutetrade_networking", "c2s_operation")

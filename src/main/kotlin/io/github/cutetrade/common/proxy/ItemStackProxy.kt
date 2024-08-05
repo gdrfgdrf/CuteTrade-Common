@@ -32,7 +32,7 @@ abstract class ItemStackProxy(
             get() {
                 if (field == null) {
                     val functions =
-                        CommonFunctionsPool.getProxy<CommonFunctions.ItemStackFunctions>(CommonFunctions.ItemStackFunctions::class.java)
+                        CommonFunctionsPool.getFunctions<CommonFunctions.ItemStackFunctions>(CommonFunctions.ItemStackFunctions::class.java)
                     field = functions.getEmptyItemStack()
                 }
                 return field!!

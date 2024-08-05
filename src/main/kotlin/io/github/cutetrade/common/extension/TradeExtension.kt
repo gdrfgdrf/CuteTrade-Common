@@ -6,7 +6,6 @@ import io.github.cutetrade.common.CommonFunctions
 import io.github.cutetrade.common.pool.CommonFunctionsPool
 import io.github.cutetrade.common.proxy.ItemStackProxy
 import io.github.cutetrade.common.proxy.PlayerProxy
-import io.github.cutetrade.common.trade.TradeItemStack
 import java.util.*
 
 fun generateTradeId(): String {
@@ -29,8 +28,8 @@ fun TradeItem.toItemStack(): ItemStackProxy {
 }
 
 fun CommonProto.Trade.toItemStack(playerProxy: PlayerProxy): ItemStackProxy {
-    val itemFunctions = CommonFunctionsPool.getProxy<CommonFunctions.ItemFunctions>(CommonFunctions.ItemFunctions::class.java)
-    val itemStackFunctions = CommonFunctionsPool.getProxy<CommonFunctions.ItemStackFunctions>(CommonFunctions.ItemStackFunctions::class.java)
+    val itemFunctions = CommonFunctionsPool.getFunctions<CommonFunctions.ItemFunctions>(CommonFunctions.ItemFunctions::class.java)
+    val itemStackFunctions = CommonFunctionsPool.getFunctions<CommonFunctions.ItemStackFunctions>(CommonFunctions.ItemStackFunctions::class.java)
 
     val item = if (this.tradeResult == CommonProto.TradeResult.TRADE_RESULT_FINISHED) {
         itemFunctions.get("GOLD_BLOCK")

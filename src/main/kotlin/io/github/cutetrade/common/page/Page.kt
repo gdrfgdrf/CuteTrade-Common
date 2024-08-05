@@ -35,7 +35,7 @@ class Page(
 
     fun show(inventory: Any) {
         val functions =
-            CommonFunctionsPool.getProxy<CommonFunctions.InventoryFunctions>(CommonFunctions.InventoryFunctions::class.java)
+            CommonFunctionsPool.getFunctions<CommonFunctions.InventoryFunctions>(CommonFunctions.InventoryFunctions::class.java)
         slots.forEachIndexed { index, itemStack ->
             functions.setStack(inventory, index, itemStack)
         }
