@@ -2,6 +2,7 @@ package io.github.cutetrade.common.proxy
 
 import cutetrade.protobuf.CommonProto.TradeItem
 import io.github.cutetrade.common.CommonFunctions
+import io.github.cutetrade.common.extension.getProxyFactory
 import io.github.cutetrade.common.pool.CommonFunctionsPool
 
 abstract class ItemStackProxy(
@@ -15,7 +16,16 @@ abstract class ItemStackProxy(
 
     abstract fun setCustomName(textProxy: TextProxy)
 
-    abstract fun toProtobufTradeItem(addByName: String): TradeItem
+    abstract fun writeNbt(nbtProxy: NbtProxy)
+    fun toProtobufTradeItem(addByName: String): TradeItem {
+        val nbt = getProxyFactory().newNbt()
+        this.writeNbt(nbt)
+
+        return TradeItem.newBuilder()
+            .setNbt(nbt.asString())
+            .setAddByName(addByName)
+            .build()
+    }
 
     companion object {
         var EMPTY: ItemStackProxy? = null

@@ -8,10 +8,10 @@ import io.github.cutetrade.common.translation.TranslationTextAgent
 
 object CommonFunctions {
     interface ProxyFactory {
-        fun createItemStackProxyFromNbt(nbt: Nbt): ItemStackProxy
+        fun createItemStackProxyFromNbt(nbtProxy: NbtProxy): ItemStackProxy
 
-        fun newNbt(): Nbt
-        fun parseNbt(string: String): Nbt
+        fun newNbt(): NbtProxy
+        fun parseNbt(string: String): NbtProxy
 
         fun createTextProxy(string: String): TextProxy
     }
