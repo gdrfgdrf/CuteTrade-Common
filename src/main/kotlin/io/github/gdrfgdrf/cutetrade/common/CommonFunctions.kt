@@ -2,7 +2,6 @@ package io.github.gdrfgdrf.cutetrade.common
 
 import io.github.gdrfgdrf.cutetrade.common.log.LogType
 import io.github.gdrfgdrf.cutetrade.common.network.interfaces.PacketAdapter
-import io.github.gdrfgdrf.cutetrade.common.network.interfaces.Writeable
 import io.github.gdrfgdrf.cutetrade.common.page.Pageable
 import io.github.gdrfgdrf.cutetrade.common.proxy.*
 import io.github.gdrfgdrf.cutetrade.common.trade.screen.handler.ScreenHandlerAgent
@@ -20,8 +19,6 @@ object CommonFunctions {
 
         fun createTextProxy(string: String): TextProxy
         fun createPacketByteBufProxy(packetByteBuf: Any): PacketByteBufProxy
-
-
     }
 
     interface MainFunctions {
@@ -31,8 +28,8 @@ object CommonFunctions {
     interface NetworkFunctions {
         fun createS2C(operatorName: String): PacketAdapter
         fun createC2S(operatorName: String): PacketAdapter
-        fun sendToServer(writeable: PacketAdapter)
-        fun sendToClient(identifier: Any, playerProxy: PlayerProxy, writeable: PacketAdapter)
+        fun sendToServer(packetAdapter: PacketAdapter)
+        fun sendToClient(identifier: Any, playerProxy: PlayerProxy, packetAdapter: PacketAdapter)
     }
 
     interface LoggerFunctions {
