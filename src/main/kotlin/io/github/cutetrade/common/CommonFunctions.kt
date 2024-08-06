@@ -5,6 +5,8 @@ import io.github.cutetrade.common.network.interfaces.PacketAdapter
 import io.github.cutetrade.common.network.interfaces.Writeable
 import io.github.cutetrade.common.proxy.*
 import io.github.cutetrade.common.trade.screen.handler.ScreenHandlerAgent
+import io.github.cutetrade.common.translation.ClickTextAction
+import io.github.cutetrade.common.translation.HoverTextAction
 import io.github.cutetrade.common.translation.TranslationAgent
 import io.github.cutetrade.common.translation.TranslationTextAgent
 
@@ -47,9 +49,14 @@ object CommonFunctions {
     interface TranslationTextFunctions {
         fun create(value: String): TranslationTextAgent
 
+        fun clickAction(clickTextAction: ClickTextAction, any: Any)
+        fun hoverAction(hoverTextAction: HoverTextAction, any: Any)
+        fun format(translationTextAgent: TranslationTextAgent, vararg any: Any)
+
         fun createShowText(value: String): TextProxy
         fun createShowItem(itemStack: ItemStackProxy): Any
         fun createShowEntity(entity: Any): Any
+
         fun build(translationTextAgent: TranslationTextAgent): TextProxy
     }
 

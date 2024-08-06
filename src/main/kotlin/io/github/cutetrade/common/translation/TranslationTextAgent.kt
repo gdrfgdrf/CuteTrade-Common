@@ -9,115 +9,84 @@ class TranslationTextAgent(
     val raw: String,
     var cuteText: Any
 ) {
-    var finalString: String = raw
+    private val functions = CommonFunctionsPool.getFunctions<CommonFunctions.TranslationTextFunctions>(
+        CommonFunctions.TranslationTextFunctions::class.java
+    )
 
-    var clickAction: ClickTextAction? = null
-    var clickActionValue: Any? = null
-
-    var hoverAction: HoverTextAction? = null
-    var hoverActionValue: Any? = null
-
-    private fun clickAction(clickTextAction: ClickTextAction): TranslationTextAgent {
-        this.clickAction = clickTextAction
-        return this
-    }
-
-    private fun clickActionValue(any: Any): TranslationTextAgent {
-        if (this.clickAction == null) {
-            return this
-        }
-        this.clickActionValue = any
+    private fun clickAction(clickTextAction: ClickTextAction, any: Any): TranslationTextAgent {
+        functions.clickAction(clickTextAction, any)
         return this
     }
 
     fun openUrl(url: String): TranslationTextAgent {
-        clickAction(ClickTextAction.OPEN_URL)
-        clickActionValue(url)
+        clickAction(ClickTextAction.OPEN_URL, url)
         return this
     }
 
     fun openFile(file: String): TranslationTextAgent {
-        clickAction(ClickTextAction.OPEN_FILE)
-        clickActionValue(file)
+        clickAction(ClickTextAction.OPEN_FILE, file)
         return this
     }
 
     fun runCommand(command: String): TranslationTextAgent {
-        clickAction(ClickTextAction.RUN_COMMAND)
-        clickActionValue(command)
+        clickAction(ClickTextAction.RUN_COMMAND, command)
         return this
     }
 
     fun suggestCommand(command: String): TranslationTextAgent {
-        clickAction(ClickTextAction.SUGGEST_COMMAND)
-        clickActionValue(command)
+        clickAction(ClickTextAction.SUGGEST_COMMAND, command)
         return this
     }
 
     fun changePage(value: String): TranslationTextAgent {
-        clickAction(ClickTextAction.CHANGE_PAGE)
-        clickActionValue(value)
+        clickAction(ClickTextAction.CHANGE_PAGE, value)
         return this
     }
 
     fun copyToClipboard(value: String): TranslationTextAgent {
-        clickAction(ClickTextAction.COPY_TO_CLIPBOARD)
-        clickActionValue(value)
+        clickAction(ClickTextAction.COPY_TO_CLIPBOARD, value)
         return this
     }
 
-    private fun hoverAction(hoverTextAction: HoverTextAction): TranslationTextAgent {
-        this.hoverAction = hoverTextAction
-        return this
-    }
-
-    private fun hoverActionValue(any: Any): TranslationTextAgent {
-        if (this.hoverAction == null) {
-            return this
-        }
+    private fun hoverAction(hoverTextAction: HoverTextAction, any: Any): TranslationTextAgent {
         val proxy =
             CommonFunctionsPool.getFunctions<CommonFunctions.TranslationTextFunctions>(
                 CommonFunctions.TranslationTextFunctions::class.java
             )
-        val value = when (this.hoverAction) {
+        val value = when (hoverTextAction) {
             HoverTextAction.SHOW_TEXT -> proxy.createShowText(any as String)
             HoverTextAction.SHOW_ITEM -> proxy.createShowItem(any as ItemStackProxy)
 //            HoverTextAction.SHOW_ENTITY -> proxy.createShowEntity(any)
             HoverTextAction.SHOW_ENTITY -> proxy.createShowText(any.toString())
             null -> TODO()
         }
-        this.hoverActionValue = value
+        functions.hoverAction(hoverTextAction, value)
+
         return this
     }
 
     fun showText(value: String): TranslationTextAgent {
-        hoverAction(HoverTextAction.SHOW_TEXT)
-        hoverActionValue(value)
+        hoverAction(HoverTextAction.SHOW_TEXT, value)
         return this
     }
 
     fun showItem(itemStackProxy: ItemStackProxy): TranslationTextAgent {
-        hoverAction(HoverTextAction.SHOW_ITEM)
-        hoverActionValue(itemStackProxy)
+        hoverAction(HoverTextAction.SHOW_ITEM, itemStackProxy)
         return this
     }
 
     fun showEntity(any: Any): TranslationTextAgent {
-        hoverAction(HoverTextAction.SHOW_ENTITY)
-        hoverActionValue(any)
+        hoverAction(HoverTextAction.SHOW_ENTITY, any)
         return this
     }
 
     fun format(vararg any: Any): TranslationTextAgent {
-        finalString = finalString.format(any)
+        functions.format(this, *any)
         return this
     }
 
     fun build(): TextProxy {
-        val buildFunction = CommonFunctionsPool.getFunctions<CommonFunctions.TranslationTextFunctions>(
-            CommonFunctions.TranslationTextFunctions::class.java
-        )
-        return buildFunction.build(this)
+        return functions.build(this)
     }
 
     companion object {
