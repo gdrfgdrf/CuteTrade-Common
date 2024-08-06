@@ -107,7 +107,7 @@ object CommonFunctions {
     }
 
     interface PageableScreenHandlerFunctions {
-        fun setOnItemClick(onItemClick: (Int) -> Unit)
+        fun setOnItemClick(screenHandlerAgent: ScreenHandlerAgent, onItemClick: (Int) -> Unit)
     }
 
     interface InventoryFunctions {

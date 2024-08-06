@@ -71,7 +71,7 @@ class Pageable {
     fun setOnItemClick(onItemClick: (Int) -> Unit) {
         val functions =
             CommonFunctionsPool.getFunctions<CommonFunctions.PageableScreenHandlerFunctions>(CommonFunctions.PageableScreenHandlerFunctions::class.java)
-        functions.setOnItemClick(onItemClick)
+        functions.setOnItemClick(pageableScreenHandler!!, onItemClick)
     }
 
     fun fullNavigationBar(serverPlayerEntity: PlayerProxy) {
