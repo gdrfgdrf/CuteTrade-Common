@@ -7,6 +7,7 @@ import io.github.cutetrade.common.proxy.TextProxy
 
 class TranslationTextAgent private constructor(
     val raw: String,
+    var cuteText: Any
 ) {
     var finalString: String = raw
 
@@ -120,6 +121,12 @@ class TranslationTextAgent private constructor(
     }
 
     companion object {
-        fun of(raw: String): TranslationTextAgent = TranslationTextAgent(raw)
+        fun of(raw: String): TranslationTextAgent {
+            val functions = CommonFunctionsPool.getFunctions<CommonFunctions.TranslationTextFunctions>(
+                CommonFunctions.TranslationTextFunctions::class.java
+            )
+            val instance = functions.create(raw)
+            return instance
+        }
     }
 }

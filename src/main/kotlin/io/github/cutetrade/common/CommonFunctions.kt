@@ -45,6 +45,8 @@ object CommonFunctions {
     }
 
     interface TranslationTextFunctions {
+        fun create(value: String): TranslationTextAgent
+
         fun createShowText(value: String): TextProxy
         fun createShowItem(itemStack: ItemStackProxy): Any
         fun createShowEntity(entity: Any): Any
