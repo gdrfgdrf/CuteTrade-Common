@@ -14,6 +14,7 @@ object CommonFunctions {
         fun parseNbt(string: String): NbtProxy
 
         fun createTextProxy(string: String): TextProxy
+        fun createPacketByteBufProxy(packetByteBuf: Any): PacketByteBufProxy
     }
 
     interface MainFunctions {
