@@ -8,7 +8,7 @@ import io.github.cutetrade.common.pool.CommonFunctionsPool
 abstract class ItemStackProxy(
     var itemStack: Any
 ) {
-    abstract fun name(): String
+    abstract fun name(): TextProxy
     abstract fun count(): Int
 
     abstract fun isEmpty(): Boolean

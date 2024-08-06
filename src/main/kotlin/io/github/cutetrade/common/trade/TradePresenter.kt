@@ -152,7 +152,7 @@ class TradePresenter private constructor(
             val prefix = toTradeText("presenter_prefix")
             val addItemMessage = toTradeTranslation("add_item_oneself")
             val itemMessage = toTradeText("item")
-                .format(itemStack.name(), itemStack.count())
+                .format(itemStack.name().string(), itemStack.count())
                 .showItem(itemStack)
 
             addItemMessage
@@ -165,7 +165,7 @@ class TradePresenter private constructor(
             val addItemMessage = toTradeTranslation("add_item_other")
                 .format0(tradeContext.redPlayer.playerName)
             val itemMessage = toTradeText("item")
-                .format(itemStack.name(), itemStack.count())
+                .format(itemStack.name().string(), itemStack.count())
                 .showItem(itemStack)
 
             addItemMessage.append(itemMessage)
@@ -206,7 +206,7 @@ class TradePresenter private constructor(
             val addItemMessage = toTradeTranslation("add_item_other")
                 .format0(tradeContext.bluePlayer.playerName)
             val itemMessage = toTradeText("item")
-                .format(itemStack.name(), itemStack.count())
+                .format(itemStack.name().string(), itemStack.count())
                 .showItem(itemStack)
 
             addItemMessage.append(itemMessage)
@@ -217,7 +217,7 @@ class TradePresenter private constructor(
             val prefix = toTradeText("presenter_prefix")
             val addItemMessage = toTradeTranslation("add_item_oneself")
             val itemMessage = toTradeText("item")
-                .format(itemStack.name(), itemStack.count())
+                .format(itemStack.name().string(), itemStack.count())
                 .showItem(itemStack)
 
             addItemMessage.append(itemMessage)

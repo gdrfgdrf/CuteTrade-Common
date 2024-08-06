@@ -97,7 +97,7 @@ fun CommonProto.Trade.printInformation(playerProxy: PlayerProxy) {
                     message.get0()
                         .showItem(itemStack)
 
-                    message.format0(itemStack.name(), itemStack.count())
+                    message.format0(itemStack.name().string(), itemStack.count())
                         .send("")
                 }
             }
@@ -124,7 +124,7 @@ fun CommonProto.Trade.printInformation(playerProxy: PlayerProxy) {
                     message.get0()
                         .showItem(itemStack)
 
-                    message.format0(itemStack.name(), itemStack.count())
+                    message.format0(itemStack.name().string(), itemStack.count())
                         .send("")
                 }
             }
