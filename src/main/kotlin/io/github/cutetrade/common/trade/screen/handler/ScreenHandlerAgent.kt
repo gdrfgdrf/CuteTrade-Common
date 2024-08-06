@@ -10,7 +10,7 @@ class ScreenHandlerAgent(
 ) {
     private val functions = CommonFunctionsPool.getFunctions<CommonFunctions.ScreenHandlerFunctions>(CommonFunctions.ScreenHandlerFunctions::class.java)
 
-    fun getInventory(): Any {
+    fun getInventory(): Any? {
         return functions.getInventory(this)
     }
 

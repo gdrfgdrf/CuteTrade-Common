@@ -88,7 +88,7 @@ object CommonFunctions {
     interface ScreenHandlerFunctions {
         fun getInventory(
             screenHandlerAgent: ScreenHandlerAgent
-        ): Any
+        ): Any?
         fun setStackInSlot(
             screenHandlerAgent: ScreenHandlerAgent,
             slot: Int,
