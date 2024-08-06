@@ -1,6 +1,8 @@
 package io.github.cutetrade.common.network
 
 import io.github.cutetrade.common.CommonFunctions
+import io.github.cutetrade.common.network.packet.C2SOperationPacket
+import io.github.cutetrade.common.network.packet.S2COperationPacket
 import io.github.cutetrade.common.pool.CommonFunctionsPool
 import io.github.cutetrade.common.proxy.PacketByteBufProxy
 import io.github.cutetrade.common.proxy.PlayerProxy
@@ -34,18 +36,18 @@ object NetworkManager {
         )
     }
 
-    fun sendToServer(writer: (PacketByteBufProxy) -> Unit) {
-        NETWORK_FUNCTIONS.sendToServer(writer)
+    fun sendToServer(writeable: Writeable) {
+        NETWORK_FUNCTIONS.sendToServer(writeable)
     }
 
-    fun sendToClient(identifier: Any, playerProxy: PlayerProxy, writer: (PacketByteBufProxy) -> Unit) {
-        NETWORK_FUNCTIONS.sendToClient(identifier, playerProxy, writer)
+    fun sendToClient(identifier: Any, playerProxy: PlayerProxy, writeable: Writeable) {
+        NETWORK_FUNCTIONS.sendToClient(identifier, playerProxy, writeable)
     }
 
     interface RegisterPacketInterface {
         fun <T> register(
             packetIdentifier: Any,
-            messageType: Class<out T>,
+            messageType: Class<out Writeable>,
             encoder: (T, PacketByteBufProxy) -> Unit,
             decoder: (PacketByteBufProxy) -> T,
             handler: (PacketContext<T>) -> Unit

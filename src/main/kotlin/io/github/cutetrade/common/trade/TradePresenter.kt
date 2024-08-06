@@ -20,7 +20,7 @@ import io.github.cutetrade.common.CommonFunctions
 import io.github.cutetrade.common.enums.TraderState
 import io.github.cutetrade.common.extension.translationScope
 import io.github.cutetrade.common.network.NetworkManager
-import io.github.cutetrade.common.network.S2COperationPacket
+import io.github.cutetrade.common.network.packet.S2COperationPacket
 import io.github.cutetrade.common.operation.server.Operators
 import io.github.cutetrade.common.pool.CommonFunctionsPool
 import io.github.cutetrade.common.proxy.ItemStackProxy
@@ -295,14 +295,14 @@ class TradePresenter private constructor(
             NetworkManager.sendToClient(
                 NetworkManager.S2C_OPERATION,
                 tradeContext.redPlayer,
-                s2COperationPacket::write
+                s2COperationPacket
             )
         }
         if (!tradeContext.bluePlayer.isDisconnected()) {
             NetworkManager.sendToClient(
                 NetworkManager.S2C_OPERATION,
                 tradeContext.bluePlayer,
-                s2COperationPacket::write
+                s2COperationPacket
             )
         }
     }

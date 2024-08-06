@@ -1,10 +1,12 @@
-package io.github.cutetrade.common.network
+package io.github.cutetrade.common.network.packet
 
+import io.github.cutetrade.common.network.PacketContext
+import io.github.cutetrade.common.network.Writeable
 import io.github.cutetrade.common.operation.OperationDispatcher
 import io.github.cutetrade.common.proxy.ItemStackProxy
 import io.github.cutetrade.common.proxy.PacketByteBufProxy
 
-class C2SOperationPacket {
+class S2COperationPacket : Writeable {
     val operatorName: String
     var stringArgsLength: Int = -1
     var stringArgs: Array<String?>? = null
@@ -57,7 +59,7 @@ class C2SOperationPacket {
         }
     }
 
-    fun write(byteBuf: PacketByteBufProxy) {
+    override fun write(byteBuf: PacketByteBufProxy) {
         byteBuf.writeString(operatorName)
         byteBuf.writeInt(stringArgsLength)
         byteBuf.writeInt(intArgsLength)
@@ -85,9 +87,9 @@ class C2SOperationPacket {
     }
 
     companion object {
-        fun read(byteBuf: PacketByteBufProxy): C2SOperationPacket = C2SOperationPacket(byteBuf)
+        fun read(byteBuf: PacketByteBufProxy): S2COperationPacket = S2COperationPacket(byteBuf)
 
-        fun handle(context: PacketContext<C2SOperationPacket>) {
+        fun handle(context: PacketContext<S2COperationPacket>) {
             val packet = context.message
             val operatorName = packet.operatorName
             val stringArgsLength = packet.stringArgsLength
@@ -124,7 +126,6 @@ class C2SOperationPacket {
             if (stringArgsLength <= 0 && intArgsLength <= 0 && itemStackArgsLength <= 0) {
                 OperationDispatcher.dispatch(operatorName, context, null)
             }
-
         }
     }
 }
