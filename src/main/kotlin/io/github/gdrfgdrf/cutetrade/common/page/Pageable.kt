@@ -44,6 +44,13 @@ class Pageable {
         serverPlayerEntity.openHandledScreen(factory)
         pageableScreenHandler = serverPlayerEntity.currentScreenHandler()
         inventory = pageableScreenHandler!!.getInventory()
+
+        if (inventory != null) {
+            val pageableInventoryFunctions = CommonFunctionsPool.getFunctions<CommonFunctions.PageableInventoryFunctions>(
+                CommonFunctions.PageableInventoryFunctions::class.java
+            )
+            pageableInventoryFunctions.setPageable(inventory!!, this)
+        }
     }
 
     fun addItemStack(itemStack: ItemStackProxy) {

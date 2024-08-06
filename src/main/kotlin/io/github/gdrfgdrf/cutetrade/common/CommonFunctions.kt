@@ -3,6 +3,7 @@ package io.github.gdrfgdrf.cutetrade.common
 import io.github.gdrfgdrf.cutetrade.common.log.LogType
 import io.github.gdrfgdrf.cutetrade.common.network.interfaces.PacketAdapter
 import io.github.gdrfgdrf.cutetrade.common.network.interfaces.Writeable
+import io.github.gdrfgdrf.cutetrade.common.page.Pageable
 import io.github.gdrfgdrf.cutetrade.common.proxy.*
 import io.github.gdrfgdrf.cutetrade.common.trade.screen.handler.ScreenHandlerAgent
 import io.github.gdrfgdrf.cutetrade.common.translation.ClickTextAction
@@ -115,5 +116,9 @@ object CommonFunctions {
 
     interface InventoryFunctions {
         fun setStack(inventory: Any, index: Int, stack: ItemStackProxy)
+    }
+
+    interface PageableInventoryFunctions {
+        fun setPageable(inventory: Any, pageable: Pageable)
     }
 }
