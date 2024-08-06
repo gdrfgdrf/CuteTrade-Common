@@ -21,8 +21,6 @@ import io.github.cutetrade.common.enums.TraderState
 import io.github.cutetrade.common.extension.translationScope
 import io.github.cutetrade.common.network.NetworkManager
 import io.github.cutetrade.common.network.interfaces.PacketAdapter
-import io.github.cutetrade.common.network.interfaces.Writeable
-import io.github.cutetrade.common.network.packet.S2COperationPacketCommon
 import io.github.cutetrade.common.operation.server.Operators
 import io.github.cutetrade.common.pool.CommonFunctionsPool
 import io.github.cutetrade.common.proxy.ItemStackProxy
@@ -31,13 +29,16 @@ import io.github.cutetrade.common.translation.TranslationAgent
 class TradePresenter private constructor(
     private val tradeContext: TradeContext
 ) {
+    private val networkFunctions =
+        CommonFunctionsPool.getFunctions<CommonFunctions.NetworkFunctions>(CommonFunctions.NetworkFunctions::class.java)
+
     fun initialize() {
-        val s2COperationPacketCommon = S2COperationPacketCommon(Operators.CLIENT_INITIALIZE_TRADE)
-        s2COperationPacketCommon.stringArgs = arrayOf(
+        val s2COperationPacketCommon = networkFunctions.createS2C(Operators.CLIENT_INITIALIZE_TRADE)
+        s2COperationPacketCommon.setStringArgs(arrayOf(
             tradeContext.tradeId,
             tradeContext.redPlayer.playerName,
             tradeContext.bluePlayer.playerName
-        )
+        ))
         broadcastOperation(s2COperationPacketCommon)
     }
 
@@ -54,7 +55,7 @@ class TradePresenter private constructor(
     }
 
     fun start() {
-        val s2COperationPacketCommon = S2COperationPacketCommon(Operators.CLIENT_TRADE_START)
+        val s2COperationPacketCommon = networkFunctions.createS2C(Operators.CLIENT_TRADE_START)
         broadcastOperation(s2COperationPacketCommon)
 
         broadcastTradeMessage("trade_start")
@@ -65,8 +66,8 @@ class TradePresenter private constructor(
         blueState: TraderState
     ) {
         val stringStates: Array<String?> = arrayOf(redState.name, blueState.name)
-        val s2COperationPacketCommon = S2COperationPacketCommon(Operators.CLIENT_UPDATE_TRADER_STATE)
-        s2COperationPacketCommon.stringArgs = stringStates
+        val s2COperationPacketCommon = networkFunctions.createS2C(Operators.CLIENT_UPDATE_TRADER_STATE)
+        s2COperationPacketCommon.setStringArgs(stringStates)
 
         broadcastOperation(s2COperationPacketCommon)
     }
@@ -273,7 +274,7 @@ class TradePresenter private constructor(
     }
 
     fun end() {
-        val s2COperationPacketCommon = S2COperationPacketCommon(Operators.CLIENT_TRADE_END)
+        val s2COperationPacketCommon = networkFunctions.createS2C(Operators.CLIENT_TRADE_END)
         broadcastOperation(s2COperationPacketCommon)
     }
 
