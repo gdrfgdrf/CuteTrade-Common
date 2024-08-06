@@ -10,8 +10,13 @@ import io.github.gdrfgdrf.cutetrade.common.proxy.PacketByteBufProxy
 import io.github.gdrfgdrf.cutetrade.common.proxy.PlayerProxy
 
 object NetworkManager {
+    private val MAIN_FUNCTIONS =
+        CommonFunctionsPool.getFunctions<CommonFunctions.MainFunctions>(CommonFunctions.MainFunctions::class.java)
     private val NETWORK_FUNCTIONS =
         CommonFunctionsPool.getFunctions<CommonFunctions.NetworkFunctions>(CommonFunctions.NetworkFunctions::class.java)
+
+    val DEFAULT_S2C_OPERATION: Any = MAIN_FUNCTIONS.createIdentifier("cutetrade_networking", "s2c_operation")
+    val DEFAULT_C2S_OPERATION: Any = MAIN_FUNCTIONS.createIdentifier("cutetrade_networking", "c2s_operation")
 
     fun initialize(
         registerPacketInterface: RegisterPacketInterface
