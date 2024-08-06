@@ -6,7 +6,6 @@ import io.github.cutetrade.common.proxy.ItemStackProxy
 import io.github.cutetrade.common.proxy.TextProxy
 
 class TranslationTextAgent(
-    val raw: String,
     var cuteText: Any
 ) {
     private val functions = CommonFunctionsPool.getFunctions<CommonFunctions.TranslationTextFunctions>(
@@ -14,7 +13,7 @@ class TranslationTextAgent(
     )
 
     private fun clickAction(clickTextAction: ClickTextAction, any: Any): TranslationTextAgent {
-        functions.clickAction(clickTextAction, any)
+        functions.clickAction(this, clickTextAction, any)
         return this
     }
 
@@ -60,7 +59,7 @@ class TranslationTextAgent(
             HoverTextAction.SHOW_ENTITY -> proxy.createShowText(any.toString())
             null -> TODO()
         }
-        functions.hoverAction(hoverTextAction, value)
+        functions.hoverAction(this, hoverTextAction, value)
 
         return this
     }
