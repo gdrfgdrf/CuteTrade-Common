@@ -1,5 +1,6 @@
 package io.github.gdrfgdrf.cutetrade.common
 
+import io.github.gdrfgdrf.cutetrade.common.enums.TranslationType
 import io.github.gdrfgdrf.cutetrade.common.log.LogType
 import io.github.gdrfgdrf.cutetrade.common.network.interfaces.PacketAdapter
 import io.github.gdrfgdrf.cutetrade.common.page.Pageable
@@ -70,6 +71,11 @@ object CommonFunctions {
         fun insert(translationAgent: TranslationAgent, index: Int, translationTextAgent: TranslationTextAgent): TranslationAgent
         fun format(translationAgent: TranslationAgent, index: Int, vararg any: Any): TranslationAgent
         fun build(translationAgent: TranslationAgent): TextProxy
+    }
+
+    interface ConsoleTranslationScopeFunctions {
+        fun getTranslation(translationType: TranslationType, key: String): TranslationAgent
+        fun getText(translationType: TranslationType, key: String): TranslationTextAgent
     }
 
     interface SoundGetter {
