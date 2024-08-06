@@ -5,7 +5,7 @@ import io.github.cutetrade.common.pool.CommonFunctionsPool
 import io.github.cutetrade.common.proxy.ItemStackProxy
 import io.github.cutetrade.common.proxy.TextProxy
 
-class TranslationTextAgent private constructor(
+class TranslationTextAgent(
     val raw: String,
     var cuteText: Any
 ) {
