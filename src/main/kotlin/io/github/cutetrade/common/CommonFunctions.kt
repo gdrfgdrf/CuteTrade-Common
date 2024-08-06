@@ -49,8 +49,8 @@ object CommonFunctions {
     interface TranslationTextFunctions {
         fun create(value: String): TranslationTextAgent
 
-        fun clickAction(clickTextAction: ClickTextAction, any: Any)
-        fun hoverAction(hoverTextAction: HoverTextAction, any: Any)
+        fun clickAction(translationTextAgent: TranslationTextAgent, clickTextAction: ClickTextAction, any: Any)
+        fun hoverAction(translationTextAgent: TranslationTextAgent, hoverTextAction: HoverTextAction, any: Any)
         fun format(translationTextAgent: TranslationTextAgent, vararg any: Any)
 
         fun createShowText(value: String): TextProxy
