@@ -19,6 +19,8 @@ object CommonFunctions {
 
         fun createTextProxy(string: String): TextProxy
         fun createPacketByteBufProxy(packetByteBuf: Any): PacketByteBufProxy
+
+
     }
 
     interface MainFunctions {
@@ -63,6 +65,7 @@ object CommonFunctions {
     interface TranslationFunctions {
         fun get(translationAgent: TranslationAgent, index: Int): TranslationTextAgent
         fun append(translationAgent: TranslationAgent, translationTextAgent: TranslationTextAgent): TranslationAgent
+        fun insert(translationAgent: TranslationAgent, index: Int, translationTextAgent: TranslationTextAgent): TranslationAgent
         fun format(translationAgent: TranslationAgent, index: Int, vararg any: Any): TranslationAgent
         fun build(translationAgent: TranslationAgent): TextProxy
     }

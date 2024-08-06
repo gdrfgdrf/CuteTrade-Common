@@ -17,6 +17,10 @@ class TranslationAgent(
         return functions!!.append(this, translationTextAgent)
     }
 
+    fun insert(index: Int, translationTextAgent: TranslationTextAgent): TranslationAgent {
+        return functions!!.insert(this, index, translationTextAgent)
+    }
+
     fun format0(vararg any: Any): TranslationAgent {
         return functions!!.format(this, 0, *any)
     }
