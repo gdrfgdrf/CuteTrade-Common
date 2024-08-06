@@ -81,7 +81,8 @@ class TranslationTextAgent private constructor(
         val value = when (this.hoverAction) {
             HoverTextAction.SHOW_TEXT -> proxy.createShowText(any as String)
             HoverTextAction.SHOW_ITEM -> proxy.createShowItem(any as ItemStackProxy)
-            HoverTextAction.SHOW_ENTITY -> proxy.createShowEntity(any)
+//            HoverTextAction.SHOW_ENTITY -> proxy.createShowEntity(any)
+            HoverTextAction.SHOW_ENTITY -> proxy.createShowText(any.toString())
             null -> TODO()
         }
         this.hoverActionValue = value
