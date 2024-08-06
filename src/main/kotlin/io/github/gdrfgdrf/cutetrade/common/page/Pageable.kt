@@ -46,6 +46,7 @@ class Pageable {
         inventory = pageableScreenHandler!!.getInventory()
 
         if (inventory != null) {
+            navigator = Navigator(inventory!!)
             val pageableInventoryFunctions = CommonFunctionsPool.getFunctions<CommonFunctions.PageableInventoryFunctions>(
                 CommonFunctions.PageableInventoryFunctions::class.java
             )
