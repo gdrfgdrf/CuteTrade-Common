@@ -74,6 +74,7 @@ object CommonFunctions {
     }
 
     interface ConsoleTranslationScopeFunctions {
+        fun send(translationAgent: TranslationAgent)
         fun getTranslation(translationType: TranslationType, key: String): TranslationAgent
         fun getText(translationType: TranslationType, key: String): TranslationTextAgent
     }

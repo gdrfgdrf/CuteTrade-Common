@@ -7,7 +7,7 @@ import io.github.gdrfgdrf.cutetrade.common.proxy.TextProxy
 
 class TranslationAgent(
     val cuteTranslation: Any,
-    private val playerProxy: PlayerProxy
+    private val playerProxy: PlayerProxy?
 ) {
     fun get0(): TranslationTextAgent {
         return functions!!.get(this, 0)
@@ -30,11 +30,25 @@ class TranslationAgent(
     }
 
     fun send(customPrefix: String) {
+        if (playerProxy == null) {
+            val consoleFunctions = CommonFunctionsPool.getFunctions<CommonFunctions.ConsoleTranslationScopeFunctions>(
+                CommonFunctions.ConsoleTranslationScopeFunctions::class.java
+            )
+            consoleFunctions.send(this)
+            return
+        }
         val prefix = TranslationTextAgent.of(customPrefix)
         playerProxy.send(prefix, this)
     }
 
     fun send(customPrefix: TranslationTextAgent? = null) {
+        if (playerProxy == null) {
+            val consoleFunctions = CommonFunctionsPool.getFunctions<CommonFunctions.ConsoleTranslationScopeFunctions>(
+                CommonFunctions.ConsoleTranslationScopeFunctions::class.java
+            )
+            consoleFunctions.send(this)
+            return
+        }
         if (customPrefix != null) {
             playerProxy.send(customPrefix, this)
             return
