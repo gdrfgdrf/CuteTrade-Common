@@ -296,14 +296,14 @@ class TradePresenter private constructor(
     ) {
         if (!tradeContext.redPlayer.isDisconnected()) {
             NetworkManager.sendToClient(
-                NetworkManager.S2C_OPERATION,
+                networkFunctions.getOrCreateS2CIdentifier(),
                 tradeContext.redPlayer,
                 packetAdapter
             )
         }
         if (!tradeContext.bluePlayer.isDisconnected()) {
             NetworkManager.sendToClient(
-                NetworkManager.S2C_OPERATION,
+                networkFunctions.getOrCreateS2CIdentifier(),
                 tradeContext.bluePlayer,
                 packetAdapter
             )

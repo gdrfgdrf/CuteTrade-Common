@@ -28,6 +28,10 @@ object CommonFunctions {
     interface NetworkFunctions {
         fun createS2C(operatorName: String): PacketAdapter
         fun createC2S(operatorName: String): PacketAdapter
+
+        fun getOrCreateS2CIdentifier(): Any
+        fun getOrCreateC2SIdentifier(): Any
+
         fun sendToServer(packetAdapter: PacketAdapter)
         fun sendToClient(identifier: Any, playerProxy: PlayerProxy, packetAdapter: PacketAdapter)
     }
