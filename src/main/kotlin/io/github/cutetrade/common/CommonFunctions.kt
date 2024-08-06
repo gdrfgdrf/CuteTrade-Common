@@ -31,7 +31,8 @@ object CommonFunctions {
     }
 
     interface LoggerFunctions {
-        fun log(logType: LogType, message: String)
+        fun log(logType: LogType, message: String, vararg args: Any)
+        fun error(message: String, throwable: Throwable)
     }
 
     interface ItemStackFunctions {
