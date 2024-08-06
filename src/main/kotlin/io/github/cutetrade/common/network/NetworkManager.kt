@@ -1,8 +1,10 @@
 package io.github.cutetrade.common.network
 
 import io.github.cutetrade.common.CommonFunctions
-import io.github.cutetrade.common.network.packet.C2SOperationPacket
-import io.github.cutetrade.common.network.packet.S2COperationPacket
+import io.github.cutetrade.common.network.interfaces.PacketAdapter
+import io.github.cutetrade.common.network.interfaces.Writeable
+import io.github.cutetrade.common.network.packet.C2SOperationPacketCommon
+import io.github.cutetrade.common.network.packet.S2COperationPacketCommon
 import io.github.cutetrade.common.pool.CommonFunctionsPool
 import io.github.cutetrade.common.proxy.PacketByteBufProxy
 import io.github.cutetrade.common.proxy.PlayerProxy
@@ -21,27 +23,27 @@ object NetworkManager {
     ) {
         registerPacketInterface.register(
             S2C_OPERATION,
-            S2COperationPacket::class.java,
-            S2COperationPacket::write,
-            S2COperationPacket::read,
-            S2COperationPacket::handle
+            S2COperationPacketCommon::class.java,
+            S2COperationPacketCommon::write,
+            S2COperationPacketCommon::read,
+            S2COperationPacketCommon::handle
         )
 
         registerPacketInterface.register(
             C2S_OPERATION,
-            C2SOperationPacket::class.java,
-            C2SOperationPacket::write,
-            C2SOperationPacket::read,
-            C2SOperationPacket::handle
+            C2SOperationPacketCommon::class.java,
+            C2SOperationPacketCommon::write,
+            C2SOperationPacketCommon::read,
+            C2SOperationPacketCommon::handle
         )
     }
 
-    fun sendToServer(writeable: Writeable) {
-        NETWORK_FUNCTIONS.sendToServer(writeable)
+    fun sendToServer(packetAdapter: PacketAdapter) {
+        NETWORK_FUNCTIONS.sendToServer(packetAdapter)
     }
 
-    fun sendToClient(identifier: Any, playerProxy: PlayerProxy, writeable: Writeable) {
-        NETWORK_FUNCTIONS.sendToClient(identifier, playerProxy, writeable)
+    fun sendToClient(identifier: Any, playerProxy: PlayerProxy, packetAdapter: PacketAdapter) {
+        NETWORK_FUNCTIONS.sendToClient(identifier, playerProxy, packetAdapter)
     }
 
     interface RegisterPacketInterface {

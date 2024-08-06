@@ -1,7 +1,8 @@
 package io.github.cutetrade.common
 
 import io.github.cutetrade.common.log.LogType
-import io.github.cutetrade.common.network.Writeable
+import io.github.cutetrade.common.network.interfaces.PacketAdapter
+import io.github.cutetrade.common.network.interfaces.Writeable
 import io.github.cutetrade.common.proxy.*
 import io.github.cutetrade.common.trade.screen.handler.ScreenHandlerAgent
 import io.github.cutetrade.common.translation.TranslationAgent
@@ -23,8 +24,10 @@ object CommonFunctions {
     }
 
     interface NetworkFunctions {
-        fun sendToServer(writeable: Writeable)
-        fun sendToClient(identifier: Any, playerProxy: PlayerProxy, writeable: Writeable)
+        fun createS2C(): PacketAdapter
+        fun createC2S(): PacketAdapter
+        fun sendToServer(writeable: PacketAdapter)
+        fun sendToClient(identifier: Any, playerProxy: PlayerProxy, writeable: PacketAdapter)
     }
 
     interface LoggerFunctions {

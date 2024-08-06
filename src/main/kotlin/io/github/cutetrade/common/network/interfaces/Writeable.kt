@@ -1,4 +1,4 @@
-package io.github.cutetrade.common.network
+package io.github.cutetrade.common.network.interfaces
 
 import io.github.cutetrade.common.proxy.PacketByteBufProxy
 

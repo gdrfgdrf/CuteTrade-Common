@@ -1,12 +1,13 @@
 package io.github.cutetrade.common.network.packet
 
 import io.github.cutetrade.common.network.PacketContext
-import io.github.cutetrade.common.network.Writeable
+import io.github.cutetrade.common.network.interfaces.PacketAdapter
+import io.github.cutetrade.common.network.interfaces.Writeable
 import io.github.cutetrade.common.operation.OperationDispatcher
 import io.github.cutetrade.common.proxy.ItemStackProxy
 import io.github.cutetrade.common.proxy.PacketByteBufProxy
 
-class S2COperationPacket : Writeable {
+class C2SOperationPacketCommon : PacketAdapter {
     val operatorName: String
     var stringArgsLength: Int = -1
     var stringArgs: Array<String?>? = null
@@ -59,6 +60,26 @@ class S2COperationPacket : Writeable {
         }
     }
 
+    override fun getOperatorName(): String = operatorName
+
+    override fun getStringArgs(): Array<String?>? = stringArgs
+
+    override fun setStringArgs(args: Array<String?>?) {
+        this.stringArgs = args
+    }
+
+    override fun getIntArgs(): Array<Int?>? = intArgs
+
+    override fun setIntArgs(args: Array<Int?>?) {
+        this.intArgs = args
+    }
+
+    override fun getItemStackArgs(): Array<ItemStackProxy?>? = itemStackArgs
+
+    override fun setItemStackArgs(args: Array<ItemStackProxy?>?) {
+        this.itemStackArgs = args
+    }
+
     override fun write(byteBuf: PacketByteBufProxy) {
         byteBuf.writeString(operatorName)
         byteBuf.writeInt(stringArgsLength)
@@ -87,9 +108,9 @@ class S2COperationPacket : Writeable {
     }
 
     companion object {
-        fun read(byteBuf: PacketByteBufProxy): S2COperationPacket = S2COperationPacket(byteBuf)
+        fun read(byteBuf: PacketByteBufProxy): C2SOperationPacketCommon = C2SOperationPacketCommon(byteBuf)
 
-        fun handle(context: PacketContext<S2COperationPacket>) {
+        fun handle(context: PacketContext<C2SOperationPacketCommon>) {
             val packet = context.message
             val operatorName = packet.operatorName
             val stringArgsLength = packet.stringArgsLength
@@ -126,6 +147,7 @@ class S2COperationPacket : Writeable {
             if (stringArgsLength <= 0 && intArgsLength <= 0 && itemStackArgsLength <= 0) {
                 OperationDispatcher.dispatch(operatorName, context, null)
             }
+
         }
     }
 }
