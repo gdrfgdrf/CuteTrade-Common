@@ -10,4 +10,5 @@ abstract class PacketByteBufProxy(
     abstract fun writeString(str: String)
     abstract fun writeInt(i: Int)
     abstract fun writeItemStack(itemStackProxy: ItemStackProxy)
+    abstract fun writeNbt(nbtProxy: NbtProxy)
 }
