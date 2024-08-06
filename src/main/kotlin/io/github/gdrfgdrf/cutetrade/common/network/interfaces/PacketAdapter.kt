@@ -3,14 +3,14 @@ package io.github.gdrfgdrf.cutetrade.common.network.interfaces
 import io.github.gdrfgdrf.cutetrade.common.proxy.ItemStackProxy
 
 interface PacketAdapter : Writeable {
-    fun getOperatorName(): String
+    fun getOperatorName_(): String
 
-    fun getStringArgs(): Array<String?>?
-    fun setStringArgs(args: Array<String?>?)
+    fun getStringArgs_(): Array<String?>?
+    fun setStringArgs_(args: Array<String?>?)
 
-    fun getIntArgs(): Array<Int?>?
-    fun setIntArgs(args: Array<Int?>?)
+    fun getIntArgs_(): Array<Int?>?
+    fun setIntArgs_(args: Array<Int?>?)
 
-    fun getItemStackArgs(): Array<ItemStackProxy?>?
-    fun setItemStackArgs(args: Array<ItemStackProxy?>?)
+    fun getItemStackArgs_(): Array<ItemStackProxy?>?
+    fun setItemStackArgs_(args: Array<ItemStackProxy?>?)
 }

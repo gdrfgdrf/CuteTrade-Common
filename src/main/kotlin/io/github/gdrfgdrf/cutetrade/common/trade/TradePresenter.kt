@@ -34,7 +34,7 @@ class TradePresenter private constructor(
 
     fun initialize() {
         val s2COperationPacketCommon = networkFunctions.createS2C(Operators.CLIENT_INITIALIZE_TRADE)
-        s2COperationPacketCommon.setStringArgs(arrayOf(
+        s2COperationPacketCommon.setStringArgs_(arrayOf(
             tradeContext.tradeId,
             tradeContext.redPlayer.playerName,
             tradeContext.bluePlayer.playerName
@@ -67,7 +67,7 @@ class TradePresenter private constructor(
     ) {
         val stringStates: Array<String?> = arrayOf(redState.name, blueState.name)
         val s2COperationPacketCommon = networkFunctions.createS2C(Operators.CLIENT_UPDATE_TRADER_STATE)
-        s2COperationPacketCommon.setStringArgs(stringStates)
+        s2COperationPacketCommon.setStringArgs_(stringStates)
 
         broadcastOperation(s2COperationPacketCommon)
     }
