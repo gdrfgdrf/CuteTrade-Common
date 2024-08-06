@@ -119,7 +119,7 @@ class Pageable {
             val redPane = itemStackFunctions.create(itemFunctions.get("RED_STAINED_GLASS_PANE"))
             redPane.setCustomName(toScreenText("close").build())
 
-            val whilePane = itemStackFunctions.create(itemFunctions.get("WHILE_STAINED_CLASS_PANE"))
+            val whilePane = itemStackFunctions.create(itemFunctions.get("WHITE_STAINED_CLASS_PANE"))
             whilePane.setCustomName(TranslationTextAgent.of("").build())
 
             if (!left && !right) {
