@@ -35,7 +35,7 @@ object DeclineTradeResultCommandExecutor {
             val tradeRequest = playerProxy.getTradeRequest(redPlayer!!)
             if (tradeRequest == null) {
                 toCommandTranslation("not_found_request")
-                    .format0()
+                    .format0(providedRedName)
                     .send()
                 return@translationScope
             }
