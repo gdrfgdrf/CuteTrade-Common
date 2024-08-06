@@ -1,7 +1,7 @@
 package io.github.cutetrade.common.proxy
 
 abstract class PacketByteBufProxy(
-    val packetByteBuf: Any
+    var packetByteBuf: Any
 ) {
     abstract fun readString(): String
     abstract fun readInt(): Int

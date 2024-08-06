@@ -6,8 +6,8 @@ import io.github.cutetrade.common.trade.screen.handler.ScreenHandlerAgent
 import io.github.cutetrade.common.translation.TranslationTextAgent
 
 abstract class PlayerProxy(
-    val playerName: String,
-    val serverPlayerEntity: Any
+    var playerName: String,
+    var serverPlayerEntity: Any
 ) {
     fun send(message: TranslationAgent) {
         val prefix = getText(TranslationType.COMMAND, "prefix")

@@ -6,7 +6,7 @@ import io.github.cutetrade.common.extension.getProxyFactory
 import io.github.cutetrade.common.pool.CommonFunctionsPool
 
 abstract class ItemStackProxy(
-    val itemStack: Any
+    var itemStack: Any
 ) {
     abstract fun name(): String
     abstract fun count(): Int

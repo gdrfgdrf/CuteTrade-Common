@@ -1,7 +1,7 @@
 package io.github.cutetrade.common.proxy
 
 abstract class NbtProxy(
-    val nbt: Any
+    var nbt: Any
 ) {
     abstract fun asString(): String
 
