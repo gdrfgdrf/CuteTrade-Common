@@ -55,7 +55,7 @@ fun PlayerProxy.removeTradeRequest(redPlayerEntity: PlayerProxy) {
 }
 
 fun PlayerProxy.isTrading(): Boolean {
-    return TradeManager.trades.contains(this)
+    return TradeManager.trades.containsKey(this)
 }
 
 fun PlayerProxy.currentTrade(): TradeContext? {

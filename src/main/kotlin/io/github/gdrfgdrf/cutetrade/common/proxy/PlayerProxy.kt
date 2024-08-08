@@ -24,4 +24,5 @@ abstract class PlayerProxy(
     abstract fun playSound(any: Any, volume: Float, pitch: Float)
     abstract fun currentScreenHandler(): ScreenHandlerAgent
     abstract fun isDisconnected(): Boolean
+    abstract fun isDead(): Boolean
 }

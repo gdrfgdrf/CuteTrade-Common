@@ -94,8 +94,12 @@ class TradeScreenPresenter private constructor(
     }
 
     fun closeTradeScreen() {
-        redPlayer.closeHandledScreen()
-        bluePlayer.closeHandledScreen()
+        if (!redPlayer.isDead()) {
+            redPlayer.closeHandledScreen()
+        }
+        if (!bluePlayer.isDead()) {
+            bluePlayer.closeHandledScreen()
+        }
     }
 
     companion object {
