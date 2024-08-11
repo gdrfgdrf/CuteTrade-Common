@@ -55,9 +55,6 @@ class TradePresenter private constructor(
     }
 
     fun start() {
-        val s2COperationPacketCommon = networkFunctions.createS2C(Operators.CLIENT_TRADE_START)
-        broadcastOperation(s2COperationPacketCommon)
-
         broadcastTradeMessage("trade_start")
     }
 
